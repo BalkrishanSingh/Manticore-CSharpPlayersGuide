@@ -1,9 +1,9 @@
-﻿int maxManticoreHealth = 10, maxCityHealth = 15;
+﻿
 int minDistance = 0, maxDistance = 100;
-
-
-int round = 1, manticoreHealth = maxManticoreHealth, cityHealth = maxCityHealth, manticoreLocation = GetManticoreLocation();
-
+int maxManticoreHealth = 10, maxCityHealth = 15;
+int manticoreHealth = maxManticoreHealth, cityHealth = maxCityHealth;
+int manticoreLocation = GetManticoreLocation();
+int round = 1;
 
 while (true)
 {
