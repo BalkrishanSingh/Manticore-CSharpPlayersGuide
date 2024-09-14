@@ -9,7 +9,7 @@ while (true)
 {
     Console.WriteLine("-----------------------------------------------------------");
     DisplayRound();
-    if (manticoreHealth == 0)
+    if (manticoreHealth <= 0)
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
@@ -17,7 +17,7 @@ while (true)
     }
 
     cityHealth--;
-    if (cityHealth == 0)
+    if (cityHealth <= 0)
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("The City of Consolas has been destroyed! You should have tried harder...");
@@ -47,7 +47,6 @@ while (true)
 }
 
 
-
 static string ManticoreHitStatus(int manticoreLocation, int cannonTargetRange)
 {
      if (manticoreLocation > cannonTargetRange) return "That round FELL SHORT of the target.";
@@ -61,7 +60,6 @@ static string ManticoreHitStatus(int manticoreLocation, int cannonTargetRange)
     if (manticoreLocation == cannonTargetRange) return manticoreHealth - cannonDamage;
     else return manticoreHealth;
 }
-
 
 
 void RoundColor()
