@@ -2,13 +2,13 @@
 int minDistance = 0, maxDistance = 100;
 
 
-int round = 1, manticoreHealth = maxManticoreHealth, cityHealth = maxCityHealth, manticoreLocation = GetManticoreLocation(minDistance, maxDistance);
+int round = 1, manticoreHealth = maxManticoreHealth, cityHealth = maxCityHealth, manticoreLocation = GetManticoreLocation();
 
 
 while (true)
 {
     Console.WriteLine("-----------------------------------------------------------");
-    manticoreHealth = Turn();
+    DisplayRound();
     if (manticoreHealth == 0)
     {
         Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
@@ -24,14 +24,14 @@ while (true)
     round++;
 }
 
-int Turn()
+ void DisplayRound()
 {
     
     
-    RoundColor(round);//change color according to type of cannon damage
+    RoundColor();//change color according to type of cannon damage
     DisplayStatus();
     
-    int cannonDamage = CalculateCannonDamage(round);
+    int cannonDamage = CalculateCannonDamage();
     Console.WriteLine($"The cannon is expected to deal {cannonDamage} damage this round.");
     
     
@@ -41,8 +41,7 @@ int Turn()
     manticoreHealth = NewManticoreHealth(manticoreHealth,manticoreLocation,cannonDamage,cannonTargetRange);
     
     Console.ForegroundColor = ConsoleColor.Gray;//turns back color to gray for next round
-
-    return manticoreHealth;
+    
 }
 
 
@@ -55,7 +54,7 @@ static string ManticoreHitStatus(int manticoreLocation, int cannonTargetRange)
 
 }
 
-static int NewManticoreHealth(int manticoreHealth,int manticoreLocation,int cannonDamage, int cannonTargetRange)
+ static int NewManticoreHealth(int manticoreHealth,int manticoreLocation,int cannonDamage, int cannonTargetRange)
 {
     if (manticoreLocation == cannonTargetRange) return manticoreHealth - cannonDamage;
     else return manticoreHealth;
@@ -63,7 +62,7 @@ static int NewManticoreHealth(int manticoreHealth,int manticoreLocation,int cann
 
 
 
-static void RoundColor(int round)
+void RoundColor()
 {
     if (round % 3 == 0 && round % 5 == 0)
     {
@@ -82,7 +81,7 @@ static void RoundColor(int round)
     
     
 }
-static int CalculateCannonDamage(int round)
+ int CalculateCannonDamage()
 {
     int cannonDamage = 1;
     
@@ -104,34 +103,34 @@ static int CalculateCannonDamage(int round)
 }
 
 
-void DisplayStatus()
+ void DisplayStatus()
 {
     Console.WriteLine(
         $"STATUS: Round: {round} City: {cityHealth}/{maxCityHealth} Manticore: {manticoreHealth}/{maxManticoreHealth}");
 }
 
 
-static int GetManticoreLocation(int minDistance, int maxDistance)
+ int GetManticoreLocation()
 {
-    int manticoreLocation;
+    int location;
     
     int choice = InputNumberInRange("Enter 1 for Single-player and 2 for Multiplayer",1,2);
     if (choice == 2){
-         manticoreLocation = InputNumberInRange("Player 1, how far away from the city do you want to station the Manticore? ",minDistance,maxDistance);
+         location = InputNumberInRange("Player 1, how far away from the city do you want to station the Manticore? ",minDistance,maxDistance);
 
     }
     else
     {
         Random rnd = new Random();
-         manticoreLocation = rnd.Next(minDistance, maxDistance);
+         location = rnd.Next(minDistance, maxDistance);
     }
 
 
-    return manticoreLocation;
+    return location;
 }
 
 
-static int InputNumberInRange(string text, int min, int max)
+int InputNumberInRange(string text, int min, int max)
 {
     while (true)
     {
