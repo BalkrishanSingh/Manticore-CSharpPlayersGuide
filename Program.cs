@@ -114,9 +114,10 @@ void RoundColor()
 {
     int location;
     
-    int choice = InputNumberInRange("Enter 1 for Single-player and 2 for Multiplayer",1,2);
+    int choice = InputNumberInRange("Enter 1 for Single-player and 2 for Multiplayer :",1,2);
     if (choice == 2){
          location = InputNumberInRange("Player 1, how far away from the city do you want to station the Manticore? ",minDistance,maxDistance);
+         Console.Clear();
 
     }
     else
