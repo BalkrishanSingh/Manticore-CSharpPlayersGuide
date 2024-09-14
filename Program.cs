@@ -11,6 +11,7 @@ while (true)
     DisplayRound();
     if (manticoreHealth == 0)
     {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
         break;
     }
@@ -18,6 +19,7 @@ while (true)
     cityHealth--;
     if (cityHealth == 0)
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("The City of Consolas has been destroyed! You should have tried harder...");
         break;
     }
